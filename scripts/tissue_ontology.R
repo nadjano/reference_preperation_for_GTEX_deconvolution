@@ -33,7 +33,7 @@ df_tissue$seurat.tissue <- mapvalues(df_tissue$seurat.tissue, from= tissue, to=o
 
 seurat$tissue = df_tissue$seurat.tissue
 
-celltype = read.csv('/nfs/production/irene/ma/users/nnolte/DECONVOLUTION/tabula_sapiens/cell_Type_list.tsv', sep = "\t", row.names = 1)
+celltype = read.csv('files/cell_Type_list.tsv', sep = "\t", row.names = 1)
 
 df_cellType= data.frame(seurat$cellType)
 df_cellType$seurat.cellType <- mapvalues(df_cellType$seurat.cellType,  from= celltype$unique.seurat.cellType., to=celltype$modified_celltype)
