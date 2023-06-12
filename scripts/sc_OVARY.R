@@ -6,34 +6,16 @@ library(plyr)
 
 source('scripts/R_functions.R')
 
+# read in .rds downloaded from cellXgene
 seurat = readRDS('Raw/ovary.rds')
-
-seurat@assays$RNA
-
-unique(seurat$cell_type)
-
-Idents(seurat) = seurat$cell_type
 
 seurat$cellType = seurat$cell_type
 
+# downsample cells to max 300 per cell type
 seurat300 = get_300_cells_per_celltype(seurat)
 
-seurat300 = remove_rare_celltypes(seurat300)
+seurat300$sampleID = seurat300$donor_id
+seurat300$cellID = colnames(seurat300)
 
-sc<- FindVariableFeatures(seurat300, selection.method = "vst", nfeatures = 2000)
+saveRDS(seurat300, 'Processed/ovary_seurat.rds')
 
-all.genes <- rownames(sc)
-pbmc <- ScaleData(sc, features = all.genes)
-
-pbmc <- RunPCA(pbmc, features = VariableFeatures(object = pbmc))
-
-pbmc <- RunUMAP(pbmc, dims = 1:10)
-
-Idents(pbmc) = pbmc$cellType
-
-
-pbmc$sampleID = pbmc$donor_id
-pbmc$cellID = colnames(pbmc)
-
-saveRDS(pbmc, 'Processed/ovary_seurat.rds')
-count(seurat300$cellType)
