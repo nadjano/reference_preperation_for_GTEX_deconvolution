@@ -20,7 +20,7 @@ for (tissue in tissues){
     cell_types <- unique(seurat_tissue$cell_type)
     seurat_downsampled = list()
     for (ct in cell_types) {
-    cells <- colnames(subset(seurat_tissue, cellType == ct))
+    cells <- colnames(subset(seurat_tissue, cell_type == ct))
     if (length(cells) > 300) {
         cells <- sample(cells, 300)
         print(cells)
