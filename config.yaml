@@ -1,0 +1,15 @@
+mem_gb: #Will be converted to MB
+
+  resultsExp: 5 #Only needed at last step
+  minorOps: 50 #Will be used for all operations that require relatively less memory
+  pbulks: 300
+  scaleTransform: 300
+  c_gen: 300
+  CDSeq: 300
+  Bisque: 300
+  CPM: 300
+  DWLS: 300
+  MuSiC: 300
+  SCDC: 300
+  TIMER: 300
+  bseqsc: 300

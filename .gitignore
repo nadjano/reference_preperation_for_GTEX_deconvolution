@@ -1,0 +1,5 @@
+env/
+logs/
+Processed/
+Raw/  
+tabels/geneInfo.rda
