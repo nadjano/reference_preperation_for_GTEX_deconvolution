@@ -28,7 +28,7 @@ for tissue in tissues:
     row_attrs = { "Gene": [re.sub(r'\.\d+$', '', item) for item in ds.ra.Accession]}
     col_attrs = {"CellID": cellID ,"cellType": labels, 'sampleID':donor, 'clusters': clusters }
 
-
-    loompy.create('Raw/brain_split/' + tissue +'_5000.loom', counts_sub, row_attrs, col_attrs)
+    tissue = re.sub(" ", "", tissue)
+    loompy.create('Raw/Split/' + tissue +'_5000.loom', counts_sub, row_attrs, col_attrs)
 
 ds.close()

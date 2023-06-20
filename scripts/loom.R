@@ -7,53 +7,36 @@ library(dplyr)
 library(plyr)
 library(ggplot2)
 library(Matrix)
-library(stringr)
+suppressMessages(library(stringr))
+suppressMessages(library(httr))
+suppressMessages(library(jsonlite))
 
 source('scripts/R_functions.R')
 
 # load loom file that was split into brain regions and downsamples to 
 # 5000 cells per region
-
-
-files = list.files('Raw/brain_split/', pattern = '*.loom')
+files = list.files('Raw/Split/', pattern = '*.loom')
 regions = str_remove(files, '_5000.loom')
 print(regions)
 #tissues = c("lung", "blood", "pancreas", "liver", 'coronaryartery', 'cortexofkidney', 'EBV-transformedlymphocyte', 'endocervix', 'ectocervix', 'uterus')
 
-
 for (region in regions){
-  
-  seurat = LoadLoom(paste0('Raw/brain_split/', region, '_5000.loom' ))
+#tissues = c("lung", "blood", "pancreas", "liver", 'coronaryartery', 'cortexofkidney', 'EBV-transformedlymphocyte', 'endocervix', 'ectocervix', 'uterus')
+    seurat = LoadLoom(loom_file)
 
+    # get the CL ids for cell types
+    seurat = get_300_cells_per_celltype(seurat)
+    CL_ids = factor()
+    cell_types = (unique(seurat$cellType))
+    for (cell_type in cell_types){
+      print(cell_type)
+      CL_ids = append(CL_ids , get_semantic_tag(cell_type, 'CL'))
+    }
+    
+    seurat$cell_type_ontology_term_id <- mapvalues(seurat$cell_type, from =  cell_types, to = CL_ids)
 
-  seurat = get_300_cells_per_celltype(seurat)
-  seurat = remove_rare_celltypes(seurat)
-
-  unique(seurat$cellType)
-
-  Idents(seurat) = seurat$cellType
-
-  sc<- FindVariableFeatures(seurat, selection.method = "vst", nfeatures = 2000)
-
-
-  all.genes <- rownames(sc)
-  pbmc <- ScaleData(sc, features = all.genes)
-
-  pbmc <- RunPCA(pbmc, features = VariableFeatures(object = pbmc))
-
-  pbmc <- RunUMAP(pbmc, dims = 1:10)
-
-  Idents(pbmc) = pbmc$cellType
-
-#DimPlot(pbmc, label = TRUE)  +ggtitle('Cerebellum_8000')
-
-# rename myofibroblast to fibroblast
-#pbmc$cellType = mapvalues(pbmc$cellType, from = 'myofibroblast cell', to = 'fibroblast')
-  pbmc$cellID= pbmc$sampleID
-  pbmc$sampleID = colnames(pbmc)
-
-# Save the Seurat object to a file
-  saveRDS(pbmc, file = paste0("Processed/", region, '_seurat.rds'))
-
-
+    # only get the cells that have CL ids
+    seurat <- seurat[, grepl("CL", seurat$ell_type_ontology_term_id)]
+    # Save the Seurat object to a file
+    saveRDS(seurat, file = paste0("Raw/Split/", region, '_seurat.rds'))
 }

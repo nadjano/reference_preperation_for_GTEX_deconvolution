@@ -12,7 +12,7 @@ Create a directory 'sc_References/Raw' and download the following references:
 
 + downlaoaded all cell from here (https://cellxgene.cziscience.com/collections/e5f58829-1a66-40b5-a624-9046778e74f5)
 
-### Atals of the developing human brain:
+### Atlas of the developing human brain:
 
 * [Brain cell Atlas](https://storage.googleapis.com/linnarsson-lab-human/adult_human_20221007.loom)
 * [cluster annotations](https://github.com/linnarsson-lab/adult-human-brain/raw/main/tables/cluster_annotation.xlsx)
@@ -46,6 +46,9 @@ Create a directory 'sc_References/Raw' and download the following references:
 https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE142653 and https://github.com/Voineagulab/BrainCellularComposition/blob/main/Files/geneInfo.rda?raw=true (to tabels )to change gene names to ENS IDs
 
 get GSE142653_pit_dev_5181_count.csv and GSE142653_pit_dev_CellInfo.csv
+
+### Skin
++ [Downlad .rds file from CellxGene](https://cellxgene.cziscience.com/e/da684768-fb01-455b-9f0f-b63a3e2f844f.cxg/)
 
 
 ### Construction of a human cell landscape at single-cell level

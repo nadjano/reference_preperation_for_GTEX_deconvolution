@@ -1,18 +1,28 @@
 library(Seurat)
 library(ggplot2)
 library(dplyr)
+suppressMessages(library(stringr))
+suppressMessages(library(httr))
+suppressMessages(library(jsonlite))
 
+
+source('scripts/R_functions.R')
 # Run functions 
 args <- commandArgs(trailingOnly = TRUE)
 seurat_filename = args[1]
 
 seurat = readRDS(seurat_filename)
-
+source_name = sub('.rds', '', basename(seurat_filename))
 print(head(seurat))
 
 tissues = unique(seurat$tissue)
 
 for (tissue in tissues){
+    tissue_uberon = get_semantic_tag(tissue, 'UBERON')
+    if (grepl(tissue_uberon, 'UBERON')) {
+        error(paste('no uberon for', tissue , 'found'))
+    }
+
     seurat_tissue <- seurat[, seurat$tissue == tissue]
 
     # Downsampling to get max 300 cells per celltype
@@ -38,5 +48,5 @@ for (tissue in tissues){
     }  
     
     # Save output
-    saveRDS(seurat_downsampled, paste0('Raw/split/', gsub(' ', '_', tissue), 'seurat.rds'))
+    saveRDS(seurat_downsampled, paste0('Raw/Split/', source_name,'_', gsub(' ', '',tissue), '_seurat.rds'))
 }

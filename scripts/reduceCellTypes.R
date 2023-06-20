@@ -55,7 +55,7 @@ reduce_number_of_cell_types <- function(seurat, cell_ontology, additional_ontolo
       seurat$cellType <- mapvalues(seurat$cellType, from = old_names, to = new_names)
       seurat$cellType[is.na(seurat$cellType)] <- 0
       # break loop if get desired number of cell tyes
-      if (length(unique(seurat$cellType)) < 9) {
+      if (length(unique(seurat$cellType)) < 8) {
         break
       }
     }
@@ -83,15 +83,17 @@ additional_ontologies <- unlist(ont$children, use.names = FALSE)
 #sort ontology ids that highest ids are in front as they tend to be more specific
 additional_ontologies <- additional_ontologies[order(-as.numeric(sub("CL:", "", additional_ontologies)))]
 #remove 'precursor cell', 'progenitor', 'stuff accumulating cell', 'nucleate cell', 'single nucleate cell', 
-# 'barrier cell', 'mononuclear cell'
+# 'barrier cell', 'mononuclear cell', 'cell of skeletal muscle'
 # id to avoid these terms 
-ontologies_to_remove = c("CL:0011115", "CL:0011026", "CL:0000325", "CL:0002242", "CL:0000226", "CL:0000215", "CL:0000842")
+ontologies_to_remove = c("CL:0011115", "CL:0011026", "CL:0000325", "CL:0002242", "CL:0000226", "CL:0000215", "CL:0000842", 'CL:0000188')
 additional_ontologies = additional_ontologies[ !(additional_ontologies %in% ontologies_to_remove)]
 
 args = commandArgs(trailingOnly=TRUE)
 filename = args[1]
 
 seurat = readRDS(filename)
+
+seurat$cellType = seurat$cell_type_ontology_term_id
 seurat$cellType = as.character(seurat$cellType)
 # make sure CL ids match CL ids in cl-basic.obo 
 seurat$cellType = sub('_', ':', seurat$cellType)
@@ -110,5 +112,7 @@ seurat = reduce_number_of_cell_types(seurat, ont, additional_ontologies)
 # store cell type ontology labels in cellType column as these will be required for the final output
 seurat$cellType = seurat$cell_type_names
 
+
+print(unique(seurat$cell_type_names))
 #save curated seuratObject
 saveRDS(seurat, sub("_seurat.rds", "_seurat_curated.rds", filename))

@@ -8,7 +8,7 @@ mem_gb: #Will be converted to MB
   CDSeq: 300
   Bisque: 300
   CPM: 300
-  DWLS: 300
+  DWLS: 200
   MuSiC: 300
   SCDC: 300
   TIMER: 300
