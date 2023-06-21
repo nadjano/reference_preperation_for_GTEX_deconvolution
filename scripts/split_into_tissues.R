@@ -41,4 +41,4 @@ if (length(cell_types) > 1) {
 }  
     
     # Save output
-saveRDS(seurat_downsampled, paste0('Raw/Split/', source_name,'_', gsub(' ', '-',tissue), '_seurat.rds'))
+saveRDS(seurat_downsampled, paste0('Split/', source_name,'_', gsub(' ', '-',tissue), '_seurat.rds'))

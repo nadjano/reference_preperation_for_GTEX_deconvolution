@@ -29,6 +29,6 @@ for tissue in tissues:
     col_attrs = {"CellID": cellID ,"cellType": labels, 'sampleID':donor, 'clusters': clusters }
 
     tissue = re.sub(" ", "", tissue)
-    loompy.create('Raw/Split/' + tissue +'_5000.loom', counts_sub, row_attrs, col_attrs)
+    loompy.create('Split/' + tissue +'_5000.loom', counts_sub, row_attrs, col_attrs)
 
 ds.close()

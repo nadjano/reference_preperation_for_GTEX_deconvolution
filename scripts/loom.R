@@ -15,7 +15,7 @@ source('scripts/R_functions.R')
 
 # load loom file that was split into brain regions and downsamples to 
 # 5000 cells per region
-files = paste0('Raw/Split/', list.files('Raw/Split/', pattern = '*.loom'))
+files = paste0('Split/', list.files('Split/', pattern = '*.loom'))
 
 for (loom_file in files){
 
@@ -37,5 +37,5 @@ for (loom_file in files){
     #only get the cells that have CL ids
     seurat <- seurat[, grepl("CL", seurat$cell_type_ontology_term_id)]
     # Save the Seurat object to a file
-    saveRDS(seurat, file = paste0("Raw/Split/Linnarsson_2022_", region, '_seurat.rds'))
+    saveRDS(seurat, file = paste0("Split/Linnarsson_2022_", region, '_seurat.rds'))
 }
