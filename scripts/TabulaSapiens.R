@@ -48,9 +48,9 @@ seurat$cellType = df_cellType$seurat.cellType
 
 
 GTEx_tissues = c("coronary artery", "blood", "subcutaneous adipose tissue", "prostate gland", "spleen", 
-"aorta", "uterus", "cortex of kidney", "pancreas", "urinary bladder",  "minor salivary gland",
- "pancreas", "subcutaneous adipose tissue", "uterus", "minor salivary gland", 
- "atrium auricular region", "tibial artery", "lower leg skin")
+"aorta", "uterus", "cortex of kidney", "pancreas", "urinary bladder",  "parotid gland",
+ "pancreas", "adipose tissue", "minor salivary gland", "muscle tissue",
+ "atrium auricular region", "tibial artery", "endometrium")
 
 for (tissue in unique(GTEx_tissues)){
 
