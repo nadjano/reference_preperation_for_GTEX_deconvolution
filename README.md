@@ -3,10 +3,12 @@
 This rep contains the script to make single cell reference to deconvolve GTEx tissue by tissue. 
 The scripts are in scripts.
 
+## Before running the pipeline
+- install snakemake
+- clone rep
+- Create a directory `Raw` and download the following single-cell references:
 
-Create a directory 'Raw' and download the following references:
 
-## single cell references
 
 ### Tabula Sapiens
 
@@ -35,12 +37,12 @@ and save as `Raw/Lengyel_2022.rds`
 
 ### Liver
 
-+ [Downlad .rds file from CellxGene](https://cellxgene.cziscience.com/collections/bd5230f4-cd76-4d35-9ee5-89b3e7475659) and save as `MacParland_2018.rds`
++ [Downlad .rds file from CellxGene](https://cellxgene.cziscience.com/collections/bd5230f4-cd76-4d35-9ee5-89b3e7475659) and save as `Raw/MacParland_2018.rds`
 
 
 ### Gut Cell Atlas
 + [Downlad .rds file from CellxGene](https://cellxgene.cziscience.com/collections/e33ffcd3-7cbf-4b8c-b0f4-85587ad5019a)
-and save as `GutCellAtlas.rds`
+and save as `Raw/GutCellAtlas.rds`
 
 ### Putiary Gland
 
@@ -55,3 +57,15 @@ and save as `Wiedemann_2023.rds`
 ### Construction of a human cell landscape at single-cell level
 + [Downlad .rds file from CellxGene](https://cellxgene.cziscience.com/collections/38833785-fac5-48fd-944a-0f62a4c23ed1)
 and save as `HumanCellLandscapes.rds`
+
+
+
+## Other files
++ Download cell type ontology file [here](http://purl.obolibrary.org/obo/cl/cl-basic.obo)
+
+
+
+
+## Run pipeline
+
+`snakemake --profile lsf`
