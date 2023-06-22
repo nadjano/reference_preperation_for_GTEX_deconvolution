@@ -104,24 +104,28 @@ split_sc_per_tissue <- function(seurat, tissue, output){
 get_semantic_tag <- function(tissue, ontology) {
   tissue <- gsub('_| ', '+', tissue)
   
-  
   url <- "www.ebi.ac.uk/spot/zooma/v2/api/services/annotate?propertyValue="
   res <- GET(paste0(url, tissue) )
   stop_for_status(res)
   data <- fromJSON(rawToChar(res$content))
   #filter to only get organism part ontologies
-  data = data[ grepl(ontology,(data$semanticTags) ),]
-  #check confidence of zooma maping
-  if (nrow(data) > 0){
-    data = data[1, ]
-    if (data$confidence != 'LOW'){
-      semanticTag <- basename(data$semanticTags[[1]])
-      return(semanticTag)
-    } else {
-      stop(paste('No high/good confidence mapping found for', tissue))
-    }} else {
-      paste('No mapping found for', tissue)
-    }
+  if (length(data) != 0){
+    data = data[ grepl(ontology,(data$semanticTags) ),]
+    #check confidence of zooma maping
+    if (nrow(data) > 0){
+      data = data[1, ]
+      if (data$confidence != 'LOW'){
+        semanticTag <- basename(data$semanticTags[[1]])
+        return(semanticTag)
+      } else {
+        stop(paste('No high/good confidence mapping found for', tissue))
+      }} else {
+        paste('No mapping found for', tissue)
+      }
+    
+  } else {
+    paste('No mapping found for', tissue)
+  }
   
 }
 

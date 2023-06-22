@@ -7,47 +7,51 @@ configfile: 'config.yaml'
 def getMB(val):
         return int(val*1024)
 
-
-# wildcard_constraints:
-#     source='^(?!.*Linnarsson_2022).*'
-
 ruleorder: split_brain > prepare_brain > split_into_tissues > reduce_cell_types_brain > reduce_cell_types > UMAP_plots_brain > UMAP_plots
+
+# rule all:
+#     input:
+#         'UMAP/MacParland_2018_liver_umap.png',
+#         'UMAP/TabulaSapiens_coronary-artery_umap.png',
+#         'UMAP/TabulaSapiens_blood_umap.png',
+#         'UMAP/TabulaSapiens_spleen_umap.png',
+#         'UMAP/TabulaSapiens_subcutaneous-adipose-tissue_umap.png',
+#         'UMAP/TabulaSapiens_aorta_umap.png',
+#         'UMAP/TabulaSapiens_uterus_umap.png',
+#         'UMAP/TabulaSapiens_kidney_umap.png',
+#         'UMAP/TabulaSapiens_bladder-organ_umap.png',
+#         'UMAP/TabulaSapiens_parotid-gland_umap.png',
+#         'UMAP/TabulaSapiens_mammary-gland_umap.png',
+#         'UMAP/TabulaSapiens_muscle-tissue_umap.png',
+#         'UMAP/TabulaSapiens_adipose-tissue_umap.png',
+#         'UMAP/TabulaSapiens_endometrium_umap.png',
+#         'UMAP/TabulaSapiens_cardiac-atrium_umap.png',
+#         'UMAP/TabulaSapiens_cardiac-ventricle_umap.png',
+#         'UMAP/TabulaSapiens_myometrium_umap.png',
+#         'UMAP/GTEx_sc_esophagus-muscularis-mucosa_umap.png',
+#         'UMAP/GTEx_sc_mucosa_umap.png',
+#         'UMAP/GutCellAtlas_large-intestine_umap.png',
+#         'UMAP/GutCellAtlas_small-intestine_umap.png',
+#         'UMAP/Wiedemann_2023_skin-of-body_umap.png',
+#         'UMAP/Ulrich_2021_fallopian-tube_umap.png',
+#         'UMAP/Lengyel_2022_ovary_umap.png',
+#         'UMAP/HumanCellLandscapes_stomach_umap.png',
+#         'UMAP/HumanCellLandscapes_pancreas_umap.png',
+#         'UMAP/HumanCellLandscapes_adrenal-gland_umap.png',
+#         'UMAP/IntegratedLungCellAtlas_lung-parenchyma_umap.png',
+#         'UMAP/HumanCellLandscapes_testis_umap.png',
+#         'UMAP/Linnarsson_2022_Cerebellum_umap.png',
+#         'UMAP/Linnarsson_2022_Cerebralnuclei_umap.png',
+#         'UMAP/Linnarsson_2022_Midbrain_umap.png',
+#         'UMAP/Linnarsson_2022_Hippocampus_umap.png',
+#         'UMAP/Linnarsson_2022_Spinalcord_umap.png',
+#         'UMAP/Linnarsson_2022_Thalamus_umap.png',
+#         'UMAP/Linnarsson_2022_Hypothalamus_umap.png'
 
 rule all:
     input:
-        # expand("Raw/{source}.split.done", source=['TabulaSapiens', 'GTEx_sc','GutCellAtlas', 'IntegratedLungCellAtlas', #'HumanCellLandscapes',  'liver', 'ovary', 'Fallopian_tube'])
-        # expand("UMAP/{tissue}_umap.png", tissue = ["HumanCellLandscapes_stomach", "HumanCellLandscapes_testis" ,"GTEx_sc_prostategland"])
-        #expand("Raw/{source}.split.done", source = ["Ulrich_2021", "MacParland_2018", "Lengyel_2022", "GTEx_sc"]),
-        # 'UMAP/MacParland_2018_liver_umap.png',
-        # 'UMAP/TabulaSapiens_coronary-artery_umap.png',
-        # 'UMAP/TabulaSapiens_blood_umap.png',
-        # 'UMAP/TabulaSapiens_spleen_umap.png',
-        # 'UMAP/TabulaSapiens_subcutaneous-adipose-tissue_umap.png',
-        # 'UMAP/TabulaSapiens_aorta_umap.png',
-        # 'UMAP/TabulaSapiens_uterus_umap.png',
-        # 'UMAP/TabulaSapiens_kidney_umap.png',
-        # 'UMAP/TabulaSapiens_bladder-organ_umap.png',
-        # 'UMAP/TabulaSapiens_parotid-gland_umap.png',
-        # 'UMAP/TabulaSapiens_mammary-gland_umap.png',
-        # 'UMAP/TabulaSapiens_muscle-tissue_umap.png',
-        # 'UMAP/TabulaSapiens_adipose-tissue_umap.png',
-        # 'UMAP/TabulaSapiens_endometrium_umap.png',
-        # 'UMAP/TabulaSapiens_cardiac-atrium_umap.png',
-        # 'UMAP/TabulaSapiens_cardiac-ventricle_umap.png',
-        # 'UMAP/TabulaSapiens_myometrium_umap.png',
-        # 'UMAP/GTEx_sc_esophagus-muscularis-mucosa_umap.png',
-        # 'UMAP/GTEx_sc_mucosa_umap.png',
-        # 'UMAP/GutCellAtlas_large-intestine_umap.png',
-        # 'UMAP/GutCellAtlas_small-intestine_umap.png',
-        # 'UMAP/Wiedemann_2023_skin-of-body_umap.png',
-        # 'UMAP/Ulrich_2021_fallopian-tube_umap.png',
-        # 'UMAP/Lengyel_2022_ovary_umap.png',
-        # 'UMAP/HumanCellLandscapes_stomach_umap.png',
-        # 'UMAP/HumanCellLandscapes_pancreas_umap.png',
-        # 'UMAP/HumanCellLandscapes_adrenal-gland_umap.png',
-        # 'UMAP/IntegratedLungCellAtlas_lungparenchyma_umap.png',
-        # 'UMAP/HumanCellLandscapes_testis_umap.png',
-        'UMAP/Linnarsson_2022_Pons_umap.png'
+        'all.done'
+
 
 rule adrenal_gland_reference:
     input:
@@ -183,71 +187,105 @@ rule UMAP_plots:
         Rscript {workflow.basedir}/scripts/makeUMAPplots.R {input} {output}
         """
 
-# rule rename_final_files:
+rule rename_final_files:
+    input:
+        'UMAP/MacParland_2018_liver_umap.png',
+        'UMAP/TabulaSapiens_coronary-artery_umap.png',
+        'UMAP/TabulaSapiens_blood_umap.png',
+        'UMAP/TabulaSapiens_spleen_umap.png',
+        'UMAP/TabulaSapiens_subcutaneous-adipose-tissue_umap.png',
+        'UMAP/TabulaSapiens_aorta_umap.png',
+        'UMAP/TabulaSapiens_uterus_umap.png',
+        'UMAP/TabulaSapiens_kidney_umap.png',
+        'UMAP/TabulaSapiens_bladder-organ_umap.png',
+        'UMAP/TabulaSapiens_parotid-gland_umap.png',
+        'UMAP/TabulaSapiens_mammary-gland_umap.png',
+        'UMAP/TabulaSapiens_muscle-tissue_umap.png',
+        'UMAP/TabulaSapiens_adipose-tissue_umap.png',
+        'UMAP/TabulaSapiens_endometrium_umap.png',
+        'UMAP/TabulaSapiens_cardiac-atrium_umap.png',
+        'UMAP/TabulaSapiens_cardiac-ventricle_umap.png',
+        'UMAP/TabulaSapiens_myometrium_umap.png',
+        'UMAP/GTEx_sc_esophagus-muscularis-mucosa_umap.png',
+        'UMAP/GTEx_sc_mucosa_umap.png',
+        'UMAP/GTEx_sc_prostate-gland_umap.png',
+        'UMAP/GutCellAtlas_large-intestine_umap.png',
+        'UMAP/GutCellAtlas_small-intestine_umap.png',
+        'UMAP/Wiedemann_2023_skin-of-body_umap.png',
+        'UMAP/Ulrich_2021_fallopian-tube_umap.png',
+        'UMAP/Lengyel_2022_ovary_umap.png',
+        'UMAP/HumanCellLandscapes_stomach_umap.png',
+        'UMAP/HumanCellLandscapes_pancreas_umap.png',
+        'UMAP/HumanCellLandscapes_adrenal-gland_umap.png',
+        'UMAP/IntegratedLungCellAtlas_lung-parenchyma_umap.png',
+        'UMAP/HumanCellLandscapes_testis_umap.png',
+        'UMAP/Linnarsson_2022_Cerebellum_umap.png',
+        'UMAP/Linnarsson_2022_Cerebralnuclei_umap.png',
+        'UMAP/Linnarsson_2022_Midbrain_umap.png',
+        'UMAP/Linnarsson_2022_Hippocampus_umap.png',
+        'UMAP/Linnarsson_2022_Spinalcord_umap.png',
+        'UMAP/Linnarsson_2022_Thalamus_umap.png',
+        'UMAP/Linnarsson_2022_Hypothalamus_umap.png'
+    output: 'all.done'
+    params: 
+        sampleName='GTEx_v8'
+    shell:
+        """
+        mkdir -p FinalOutput
 
-# shell:
-# """
-# mkdir -p FinalOutput
-# mv Split/Fallopian_tube_UBERON_0016632_seurat_curated.rds FinalOutput/GTEx_v8-Fallopian_Tube_seurat.rds
-# mv GTEx_sc_prostategland_seurat_curated.rds FinalOutput/GTEx_v8-Prostate_seurat.rds
-# mv TabulaSapiens_muscletissue_seurat_curated.rds GTEx_v5-Muscle_-_Skeletal_seurat.rds
-# mv TabulaSapiens_adiosetissue_seurat_curated.rds  GTEx_v5-Adipose_-_Subcutaneous_seurat.rds
-# GTEx_v5-Adipose_-_Subcutaneous_seurat.rds GTEx_v5-Adipose_-_Visceral_Omentum
-# """
-
- 
-
-# cp Split/GTEx_sc_esophagus-muscularis-mucosa_seurat_curated.rds FinalOutput/{params.sampleName}-Esophagus_-_Muscularis_seurat.rds
-# cp Split/GTEx_sc_esophagus-muscularis-mucosa_seurat_curated.rds FinalOutput/{params.sampleName}-Esophagus_-_Gastroesophageal_Junction_seurat.rds
-# cp Split/GTEx_sc_mucosa_seurat_curated.rds FinalOutput/{params.sampleName}-Esophagus_-_Mucosa_seurat.rds
-# cp Split/GTEx_sc_prostate-gland_seurat_curated.rds FinalOutput/{params.sampleName}-Prostate_seurat.rds
-# cp Split/HumanCellLandscapes_thyroid-gland_seurat_curated.rds FinalOutput/{params.sampleName}-Thyroid_seurat.rds
-# cp Split/IntegratedLungCellAtlas_lung-parenchyma_seurat_curated.rds FinalOutput/{params.sampleName}-Lung_seurat.rds
-# cp Split/Lengyel_2022_ovary_seurat_curated.rds FinalOutput/{params.sampleName}-Ovary_seurat.rds
-# cp Split/MacParland_2018_liver_seurat_curated.rds FinalOutput/{params.sampleName}-Liver_seurat.rds
-# cp Split/TabulaSapiens_adipose-tissue_seurat_curated.rds FinalOutput/{params.sampleName}-Adipose_-_Visceral_Omentum_seurat.rds
-# cp Split/TabulaSapiens_aorta_seurat_curated.rds FinalOutput/{params.sampleName}-Artery_-_Aorta_seurat.rds
-# cp Split/TabulaSapiens_bladder-organ_seurat_curated.rds FinalOutput/{params.sampleName}-Bladder_seurat.rds
-# cp Split/TabulaSapiens_blood_seurat_curated.rds FinalOutput/{params.sampleName}-Whole_Blood_seurat.rds
-# cp Split/TabulaSapiens_blood_seurat_curated.rds FinalOutput/{params.sampleName}-Cells_-_EBV-transformed_lymphocytes_seurat.rds
-# cp Split/TabulaSapiens_cardiac-atrium_seurat_curated.rds FinalOutput/{params.sampleName}-Heart_-_Atrial_Appendage_seurat.rds
-# cp Split/TabulaSapiens_cardiac-ventricle_seurat_curated.rds FinalOutput{params.sampleName}-Heart_-_Left_Ventricle_seurat.rds
-# cp Split/TabulaSapiens_coronary-artery_seurat_curated.rds FinalOutput/{params.sampleName}-Artery_-_Coronary_seurat.rds
-# cp Split/TabulaSapiens_coronary-artery_seurat_curated.rds FinalOutput/{params.sampleName}-Artery_-_Tibial_seurat.rds
-# cp Split/TabulaSapiens_endometrium_seurat_curated.rds FinalOutput/{params.sampleName}-Cervix_-_Endocervix_seurat.rds
-# cp Split/TabulaSapiens_endometrium_seurat_curated.rds FinalOutput/{params.sampleName}-Vagina_seurat.rds
-# cp Split/TabulaSapiens_endometrium_seurat_curated.rds FinalOutput/{params.sampleName}-Cervix_-_Ectocervix_seurat.rds
-# cp Split/TabulaSapiens_kidney_seurat_curated.rds FinalOutput/{params.sampleName}-Kidney_-_Cortex_seurat.rds
-# cp Split/TabulaSapiens_kidney_seurat_curated.rds FinalOutput/{params.sampleName}-Kidney_-_Medulla_seurat.rds
-# cp Split/TabulaSapiens_mammary-gland_seurat_curated.rds FinalOutput/{params.sampleName}-Breast_-_Mammary_Tissue_seurat.rds
-# cp Split/TabulaSapiens_muscle-tissue_seurat_curated.rds FinalOutput/{params.sampleName}-Muscle_-_Skeletal_seurat.rds
-# cp Split/TabulaSapiens_parotid-gland_seurat_curated.rds FinalOutput/{params.sampleName}-Minor_Salivary_Gland_seurat.rds
-# cp Split/TabulaSapiens_subcutaneous-adipose-tissue_seurat_curated.rds FinalOutput/{params.sampleName}-Adipose_-_Subcutaneous_seurat.rds
-# cp Split/TabulaSapiens_uterus_seurat_curated.rds FinalOutput/{params.sampleName}-Uterus_seurat.rds
-# cp Split/Ulrich_2021_fallopian-tube_seurat_curated.rds FinalOutput/{params.sampleName}-Fallopian_Tube_seurat.rds
-# cp Split/Wiedemann_2023_skin-of-body_seurat_curated.rds FinalOutput/{params.sampleName}-Skin_-_Not_Sun_Exposed_Suprapubic_seurat.rds
-# cp Split/Wiedemann_2023_skin-of-body_seurat_curated.rds FinalOutput/{params.sampleName}-Skin_-_Sun_Exposed_Lower_leg_seurat.rds
-# cp Split/Wiedemann_2023_skin-of-body_seurat_curated.rds FinalOutput/{params.sampleName}-Cells_-_Cultured_fibroblasts_seurat.rds
-# cp Split/TabulaSapiens_spleen_seurat_curated.rds FinalOutput/{params.sampleName}-Spleen_seurat.rds
-# cp Split/HumanCellLandscapes_stomach_seurat_curated.rds FinalOutput/{params.sampleName}-Stomach_seurat.rds
-# cp Split/HumanCellLandscapes_pancreas_seurat_curated.rds FinalOutput/{params.sampleName}-Pancreas_seurat.rds
-# cp Split/HumanCellLandscapes_testis_seurat_curated.rds FinalOutput/{params.sampleName}-Testis_seurat.rds
-# cp Split/HumanCellLandscapes_adrenal-gland_seurat_curated.rds FinalOutput/{params.sampleName}-Adrenal_Gland_seurat.rds
-# cp Split/GutCellAtlas_small-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Small_Intestine_-_Terminal_Ileum_seurat.rds
-# cp Split/GutCellAtlas_large-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Colon_-_Sigmoid_seurat.rds
-# cp Split/GutCellAtlas_large-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Colon_-_Sigmoid_seurat.rds
-# cp Split/Linnarsson_2022_Hippocampus_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Amygdala_seurat.rds
-# cp Split/Linnarsson_2022_Cerebralcortex_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Anterior_cingulate_cortex_BA24_seurat.rds
-# cp Split/Linnarsson_2022_Cerebralnuclei_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Caudate_basal_ganglia_seurat.rds
-# cp Split/Linnarsson_2022_Cerebellum_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Cerebellar_Hemisphere_seurat.rds
-# cp Split/Linnarsson_2022_Cerebellum_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Cerebellum_seurat.rds
-# cp Split/Linnarsson_2022_Cerebralcortex_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Cortex_seurat.rds
-# cp Split/Linnarsson_2022_Cerebralcortex_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Frontal_Cortex_BA9_seurat.rds
-# cp Split/Linnarsson_2022_Hippocampus_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Hippocampus_seurat.rds
-# cp Split/Linnarsson_2022_Hypothalamus_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Hypothalamus_seurat.rds
-# cp Split/Linnarsson_2022_Cerebralnuclei_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Nucleus_accumbens_basal_ganglia_seurat.rds
-# cp Split/Linnarsson_2022_Cerebralnuclei_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Putamen_basal_ganglia_seurat.rds
-# cp Split/Linnarsson_2022_Spinalcord_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Spinal_cord_cervical_c-1_seurat.rds
-# cp Split/Linnarsson_2022_Midbrain_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Substantia_nigra_seurat.rds
-# cp Split/Linnarsson_2022_Spinalcord_seurat_curated.rds FinalOutput/{params.sampleName}-Nerve_-_Tibial_seurat.rds
-# cp Split/Linnarsson_2022_Pons_seurat_curated.rds FinalOutput/{params.sampleName}-Pituitary_seurat.rds
+        cp Split/GTEx_sc_esophagus-muscularis-mucosa_seurat_curated.rds FinalOutput/{params.sampleName}-Esophagus_-_Muscularis_seurat.rds
+        cp Split/GTEx_sc_esophagus-muscularis-mucosa_seurat_curated.rds FinalOutput/{params.sampleName}-Esophagus_-_Gastroesophageal_Junction_seurat.rds
+        cp Split/GTEx_sc_mucosa_seurat_curated.rds FinalOutput/{params.sampleName}-Esophagus_-_Mucosa_seurat.rds
+        cp Split/GTEx_sc_prostate-gland_seurat_curated.rds FinalOutput/{params.sampleName}-Prostate_seurat.rds
+        cp Split/HumanCellLandscapes_thyroid-gland_seurat_curated.rds FinalOutput/{params.sampleName}-Thyroid_seurat.rds
+        cp Split/IntegratedLungCellAtlas_lung-parenchyma_seurat_curated.rds FinalOutput/{params.sampleName}-Lung_seurat.rds
+        cp Split/Lengyel_2022_ovary_seurat_curated.rds FinalOutput/{params.sampleName}-Ovary_seurat.rds
+        cp Split/MacParland_2018_liver_seurat_curated.rds FinalOutput/{params.sampleName}-Liver_seurat.rds
+        cp Split/TabulaSapiens_adipose-tissue_seurat_curated.rds FinalOutput/{params.sampleName}-Adipose_-_Visceral_Omentum_seurat.rds
+        cp Split/TabulaSapiens_aorta_seurat_curated.rds FinalOutput/{params.sampleName}-Artery_-_Aorta_seurat.rds
+        cp Split/TabulaSapiens_bladder-organ_seurat_curated.rds FinalOutput/{params.sampleName}-Bladder_seurat.rds
+        cp Split/TabulaSapiens_blood_seurat_curated.rds FinalOutput/{params.sampleName}-Whole_Blood_seurat.rds
+        cp Split/TabulaSapiens_blood_seurat_curated.rds FinalOutput/{params.sampleName}-Cells_-_EBV-transformed_lymphocytes_seurat.rds
+        cp Split/TabulaSapiens_cardiac-atrium_seurat_curated.rds FinalOutput/{params.sampleName}-Heart_-_Atrial_Appendage_seurat.rds
+        cp Split/TabulaSapiens_cardiac-ventricle_seurat_curated.rds FinalOutput{params.sampleName}-Heart_-_Left_Ventricle_seurat.rds
+        cp Split/TabulaSapiens_coronary-artery_seurat_curated.rds FinalOutput/{params.sampleName}-Artery_-_Coronary_seurat.rds
+        cp Split/TabulaSapiens_coronary-artery_seurat_curated.rds FinalOutput/{params.sampleName}-Artery_-_Tibial_seurat.rds
+        cp Split/TabulaSapiens_endometrium_seurat_curated.rds FinalOutput/{params.sampleName}-Cervix_-_Endocervix_seurat.rds
+        cp Split/TabulaSapiens_endometrium_seurat_curated.rds FinalOutput/{params.sampleName}-Vagina_seurat.rds
+        cp Split/TabulaSapiens_endometrium_seurat_curated.rds FinalOutput/{params.sampleName}-Cervix_-_Ectocervix_seurat.rds
+        cp Split/TabulaSapiens_kidney_seurat_curated.rds FinalOutput/{params.sampleName}-Kidney_-_Cortex_seurat.rds
+        cp Split/TabulaSapiens_kidney_seurat_curated.rds FinalOutput/{params.sampleName}-Kidney_-_Medulla_seurat.rds
+        cp Split/TabulaSapiens_mammary-gland_seurat_curated.rds FinalOutput/{params.sampleName}-Breast_-_Mammary_Tissue_seurat.rds
+        cp Split/TabulaSapiens_muscle-tissue_seurat_curated.rds FinalOutput/{params.sampleName}-Muscle_-_Skeletal_seurat.rds
+        cp Split/TabulaSapiens_parotid-gland_seurat_curated.rds FinalOutput/{params.sampleName}-Minor_Salivary_Gland_seurat.rds
+        cp Split/TabulaSapiens_subcutaneous-adipose-tissue_seurat_curated.rds FinalOutput/{params.sampleName}-Adipose_-_Subcutaneous_seurat.rds
+        cp Split/TabulaSapiens_uterus_seurat_curated.rds FinalOutput/{params.sampleName}-Uterus_seurat.rds
+        cp Split/Ulrich_2021_fallopian-tube_seurat_curated.rds FinalOutput/{params.sampleName}-Fallopian_Tube_seurat.rds
+        cp Split/Wiedemann_2023_skin-of-body_seurat_curated.rds FinalOutput/{params.sampleName}-Skin_-_Not_Sun_Exposed_Suprapubic_seurat.rds
+        cp Split/Wiedemann_2023_skin-of-body_seurat_curated.rds FinalOutput/{params.sampleName}-Skin_-_Sun_Exposed_Lower_leg_seurat.rds
+        cp Split/Wiedemann_2023_skin-of-body_seurat_curated.rds FinalOutput/{params.sampleName}-Cells_-_Cultured_fibroblasts_seurat.rds
+        cp Split/TabulaSapiens_spleen_seurat_curated.rds FinalOutput/{params.sampleName}-Spleen_seurat.rds
+        cp Split/HumanCellLandscapes_stomach_seurat_curated.rds FinalOutput/{params.sampleName}-Stomach_seurat.rds
+        cp Split/HumanCellLandscapes_pancreas_seurat_curated.rds FinalOutput/{params.sampleName}-Pancreas_seurat.rds
+        cp Split/HumanCellLandscapes_testis_seurat_curated.rds FinalOutput/{params.sampleName}-Testis_seurat.rds
+        cp Split/HumanCellLandscapes_adrenal-gland_seurat_curated.rds FinalOutput/{params.sampleName}-Adrenal_Gland_seurat.rds
+        cp Split/GutCellAtlas_small-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Small_Intestine_-_Terminal_Ileum_seurat.rds
+        cp Split/GutCellAtlas_large-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Colon_-_Sigmoid_seurat.rds
+        cp Split/GutCellAtlas_large-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Colon_-_Sigmoid_seurat.rds
+        cp Split/Linnarsson_2022_Hippocampus_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Amygdala_seurat.rds
+        cp Split/Linnarsson_2022_Cerebralcortex_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Anterior_cingulate_cortex_BA24_seurat.rds
+        cp Split/Linnarsson_2022_Cerebralnuclei_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Caudate_basal_ganglia_seurat.rds
+        cp Split/Linnarsson_2022_Cerebellum_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Cerebellar_Hemisphere_seurat.rds
+        cp Split/Linnarsson_2022_Cerebellum_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Cerebellum_seurat.rds
+        cp Split/Linnarsson_2022_Cerebralcortex_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Cortex_seurat.rds
+        cp Split/Linnarsson_2022_Cerebralcortex_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Frontal_Cortex_BA9_seurat.rds
+        cp Split/Linnarsson_2022_Hippocampus_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Hippocampus_seurat.rds
+        cp Split/Linnarsson_2022_Hypothalamus_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Hypothalamus_seurat.rds
+        cp Split/Linnarsson_2022_Cerebralnuclei_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Nucleus_accumbens_basal_ganglia_seurat.rds
+        cp Split/Linnarsson_2022_Cerebralnuclei_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Putamen_basal_ganglia_seurat.rds
+        cp Split/Linnarsson_2022_Spinalcord_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Spinal_cord_cervical_c-1_seurat.rds
+        cp Split/Linnarsson_2022_Midbrain_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Substantia_nigra_seurat.rds
+        cp Split/Linnarsson_2022_Spinalcord_seurat_curated.rds FinalOutput/{params.sampleName}-Nerve_-_Tibial_seurat.rds
+        cp Split/Linnarsson_2022_Pons_seurat_curated.rds FinalOutput/{params.sampleName}-Pituitary_seurat.rds
+        touch all.done
+        """

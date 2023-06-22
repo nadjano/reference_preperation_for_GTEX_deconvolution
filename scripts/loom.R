@@ -20,19 +20,21 @@ files = paste0('Split/', list.files('Split/', pattern = '*.loom'))
 for (loom_file in files){
 
     seurat = LoadLoom(loom_file)
-    region = str_remove(loom_file, '_5000.loom')
+    seurat = seurat[, !is.na(seurat$cellType) ]
+    region = str_remove(basename(loom_file), '_5000.loom')
     # get the CL ids for cell types
     print(region)
     seurat = get_300_cells_per_celltype(seurat)
     CL_ids = factor()
     cell_types = (unique(seurat$cellType))
+    print(cell_types)
     for (cell_type in cell_types){
       print(cell_type)
-      cell_type_name = gsub(".", " ", cell_type)
-      CL_ids = append(CL_ids , get_semantic_tag(cell_type_name, 'CL'))
+      cell_type_name = gsub("\\.", " ", cell_type)
+      CL_ids = append(CL_ids , get_semantic_tag(cell_type_name, '/CL'))
     }
     
-    seurat$cell_type_ontology_term_id <- mapvalues(seurat$cell_type, from =  cell_types, to = CL_ids)
+    seurat$cell_type_ontology_term_id <- mapvalues(seurat$cellType, from =  cell_types, to = CL_ids)
 
     #only get the cells that have CL ids
     seurat <- seurat[, grepl("CL", seurat$cell_type_ontology_term_id)]
