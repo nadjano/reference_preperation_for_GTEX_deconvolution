@@ -42,6 +42,7 @@ ruleorder: split_brain > prepare_brain > split_into_tissues > reduce_cell_types_
 #         'UMAP/HumanCellLandscapes_testis_umap.png',
 #         'UMAP/Linnarsson_2022_Cerebellum_umap.png',
 #         'UMAP/Linnarsson_2022_Cerebralnuclei_umap.png',
+         # 'UMAP/Linnarsson_2022_Cerebralcortex_umap.png',
 #         'UMAP/Linnarsson_2022_Midbrain_umap.png',
 #         'UMAP/Linnarsson_2022_Hippocampus_umap.png',
 #         'UMAP/Linnarsson_2022_Spinalcord_umap.png',
@@ -225,7 +226,8 @@ rule rename_final_files:
         'UMAP/Linnarsson_2022_Hippocampus_umap.png',
         'UMAP/Linnarsson_2022_Spinalcord_umap.png',
         'UMAP/Linnarsson_2022_Thalamus_umap.png',
-        'UMAP/Linnarsson_2022_Hypothalamus_umap.png'
+        'UMAP/Linnarsson_2022_Hypothalamus_umap.png',
+        'UMAP/Linnarsson_2022_Cerebralcortex_umap.png'
     output: 'all.done'
     params: 
         sampleName='GTEx_v8'
@@ -247,7 +249,7 @@ rule rename_final_files:
         cp Split/TabulaSapiens_blood_seurat_curated.rds FinalOutput/{params.sampleName}-Whole_Blood_seurat.rds
         cp Split/TabulaSapiens_blood_seurat_curated.rds FinalOutput/{params.sampleName}-Cells_-_EBV-transformed_lymphocytes_seurat.rds
         cp Split/TabulaSapiens_cardiac-atrium_seurat_curated.rds FinalOutput/{params.sampleName}-Heart_-_Atrial_Appendage_seurat.rds
-        cp Split/TabulaSapiens_cardiac-ventricle_seurat_curated.rds FinalOutput{params.sampleName}-Heart_-_Left_Ventricle_seurat.rds
+        cp Split/TabulaSapiens_cardiac-ventricle_seurat_curated.rds FinalOutput/{params.sampleName}-Heart_-_Left_Ventricle_seurat.rds
         cp Split/TabulaSapiens_coronary-artery_seurat_curated.rds FinalOutput/{params.sampleName}-Artery_-_Coronary_seurat.rds
         cp Split/TabulaSapiens_coronary-artery_seurat_curated.rds FinalOutput/{params.sampleName}-Artery_-_Tibial_seurat.rds
         cp Split/TabulaSapiens_endometrium_seurat_curated.rds FinalOutput/{params.sampleName}-Cervix_-_Endocervix_seurat.rds
@@ -271,7 +273,7 @@ rule rename_final_files:
         cp Split/HumanCellLandscapes_adrenal-gland_seurat_curated.rds FinalOutput/{params.sampleName}-Adrenal_Gland_seurat.rds
         cp Split/GutCellAtlas_small-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Small_Intestine_-_Terminal_Ileum_seurat.rds
         cp Split/GutCellAtlas_large-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Colon_-_Sigmoid_seurat.rds
-        cp Split/GutCellAtlas_large-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Colon_-_Sigmoid_seurat.rds
+        cp Split/GutCellAtlas_large-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Colon_-_Transverse_seurat.rds
         cp Split/Linnarsson_2022_Hippocampus_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Amygdala_seurat.rds
         cp Split/Linnarsson_2022_Cerebralcortex_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Anterior_cingulate_cortex_BA24_seurat.rds
         cp Split/Linnarsson_2022_Cerebralnuclei_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Caudate_basal_ganglia_seurat.rds
@@ -286,6 +288,5 @@ rule rename_final_files:
         cp Split/Linnarsson_2022_Spinalcord_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Spinal_cord_cervical_c-1_seurat.rds
         cp Split/Linnarsson_2022_Midbrain_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Substantia_nigra_seurat.rds
         cp Split/Linnarsson_2022_Spinalcord_seurat_curated.rds FinalOutput/{params.sampleName}-Nerve_-_Tibial_seurat.rds
-        cp Split/Linnarsson_2022_Pons_seurat_curated.rds FinalOutput/{params.sampleName}-Pituitary_seurat.rds
         touch all.done
         """

@@ -26,12 +26,12 @@ for (loom_file in files){
     print(region)
     seurat = get_300_cells_per_celltype(seurat)
     CL_ids = factor()
-    cell_types = (unique(seurat$cellType))
+    cell_types = unique(seurat$cellType)
     print(cell_types)
     for (cell_type in cell_types){
       print(cell_type)
       cell_type_name = gsub("\\.", " ", cell_type)
-      CL_ids = append(CL_ids , get_semantic_tag(cell_type_name, '/CL'))
+      CL_ids = append(CL_ids , get_semantic_tag(cell_type_name, "/CL"))
     }
     
     seurat$cell_type_ontology_term_id <- mapvalues(seurat$cellType, from =  cell_types, to = CL_ids)
