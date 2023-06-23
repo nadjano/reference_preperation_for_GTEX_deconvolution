@@ -207,6 +207,8 @@ rule rename_final_files:
         'UMAP/TabulaSapiens_cardiac-atrium_umap.png',
         'UMAP/TabulaSapiens_cardiac-ventricle_umap.png',
         'UMAP/TabulaSapiens_myometrium_umap.png',
+        'UMAP/TabulaSapiens_small-intestine_umap.png',
+        'UMAP/TabulaSapiens_large-intestine_umap.png',
         'UMAP/GTEx_sc_esophagus-muscularis-mucosa_umap.png',
         'UMAP/GTEx_sc_mucosa_umap.png',
         'UMAP/GTEx_sc_prostate-gland_umap.png',
@@ -271,9 +273,9 @@ rule rename_final_files:
         cp Split/HumanCellLandscapes_pancreas_seurat_curated.rds FinalOutput/{params.sampleName}-Pancreas_seurat.rds
         cp Split/HumanCellLandscapes_testis_seurat_curated.rds FinalOutput/{params.sampleName}-Testis_seurat.rds
         cp Split/HumanCellLandscapes_adrenal-gland_seurat_curated.rds FinalOutput/{params.sampleName}-Adrenal_Gland_seurat.rds
-        cp Split/GutCellAtlas_small-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Small_Intestine_-_Terminal_Ileum_seurat.rds
-        cp Split/GutCellAtlas_large-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Colon_-_Sigmoid_seurat.rds
-        cp Split/GutCellAtlas_large-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Colon_-_Transverse_seurat.rds
+        cp Split/TabulaSapiens_small-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Small_Intestine_-_Terminal_Ileum_seurat.rds
+        cp Split/TabulaSapiens_large-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Colon_-_Sigmoid_seurat.rds
+        cp Split/TabulaSapiens_large-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Colon_-_Transverse_seurat.rds
         cp Split/Linnarsson_2022_Hippocampus_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Amygdala_seurat.rds
         cp Split/Linnarsson_2022_Cerebralcortex_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Anterior_cingulate_cortex_BA24_seurat.rds
         cp Split/Linnarsson_2022_Cerebralnuclei_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Caudate_basal_ganglia_seurat.rds
