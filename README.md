@@ -37,6 +37,7 @@ Before running the pipeline, make sure you have the following:
 ### Gut Cell Atlas
 
 - Download the .rds file from CellxGene [here](https://cellxgene.cziscience.com/collections/e33ffcd3-7cbf-4b8c-b0f4-85587ad5019a) and save it as `Raw/GutCellAtlas.rds`.
+- Download the Pediatric .rds fiel CellxGene [here](https://cellxgene.cziscience.com/collections/17481d16-ee44-49e5-bcf0-28c0780d8c4a) and save is at `Raw/Elmentaite_2020.rds`
 
 ### Pituitary Gland
 
