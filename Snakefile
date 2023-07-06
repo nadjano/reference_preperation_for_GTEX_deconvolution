@@ -47,7 +47,7 @@ ruleorder: split_brain > prepare_brain > split_into_tissues > reduce_cell_types_
 #         'UMAP/Linnarsson_2022_Hippocampus_umap.png',
 #         'UMAP/Linnarsson_2022_Spinalcord_umap.png',
 #         'UMAP/Linnarsson_2022_Thalamus_umap.png',
-#         'UMAP/Linnarsson_2022_Hypothalamus_umap.png'
+#         'UMAP/Linnarsson_2022_Hypothalamus_umap.png', 
 
 rule all:
     input:
@@ -229,7 +229,8 @@ rule rename_final_files:
         'UMAP/Linnarsson_2022_Spinalcord_umap.png',
         'UMAP/Linnarsson_2022_Thalamus_umap.png',
         'UMAP/Linnarsson_2022_Hypothalamus_umap.png',
-        'UMAP/Linnarsson_2022_Cerebralcortex_umap.png'
+        'UMAP/Linnarsson_2022_Cerebralcortex_umap.png',
+        'UMAP/Elmentaite_2020_ileum_umap.png'
     output: 'all.done'
     params: 
         sampleName='GTEx_v8'
@@ -273,7 +274,7 @@ rule rename_final_files:
         cp Split/HumanCellLandscapes_pancreas_seurat_curated.rds FinalOutput/{params.sampleName}-Pancreas_seurat.rds
         cp Split/HumanCellLandscapes_testis_seurat_curated.rds FinalOutput/{params.sampleName}-Testis_seurat.rds
         cp Split/HumanCellLandscapes_adrenal-gland_seurat_curated.rds FinalOutput/{params.sampleName}-Adrenal_Gland_seurat.rds
-        cp Split/TabulaSapiens_small-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Small_Intestine_-_Terminal_Ileum_seurat.rds
+        cp Split/Elmentaite_2020_ileum_seurat_curated.rds FinalOutput/{params.sampleName}-Small_Intestine_-_Terminal_Ileum_seurat.rds
         cp Split/TabulaSapiens_large-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Colon_-_Sigmoid_seurat.rds
         cp Split/TabulaSapiens_large-intestine_seurat_curated.rds FinalOutput/{params.sampleName}-Colon_-_Transverse_seurat.rds
         cp Split/Linnarsson_2022_Hippocampus_seurat_curated.rds FinalOutput/{params.sampleName}-Brain_-_Amygdala_seurat.rds
