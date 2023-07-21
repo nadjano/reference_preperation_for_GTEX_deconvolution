@@ -48,9 +48,7 @@ Before running the pipeline, make sure you have the following:
 
 - Download the .rds file from CellxGene [here](https://cellxgene.cziscience.com/e/da684768-fb01-455b-9f0f-b63a3e2f844f.cxg/) and save it as `Raw/Wiedemann_2023.rds`.
 
-### Construction of a Human Cell
-
- Landscape at Single-Cell Level
+### Human Cell Landscape at Single-Cell Level
 
 - Download the .rds file from CellxGene [here](https://cellxgene.cziscience.com/collections/38833785-fac5-48fd-944a-0f62a4c23ed1) and save it as `Raw/HumanCellLandscapes.rds`.
 
